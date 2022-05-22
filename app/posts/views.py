@@ -15,6 +15,13 @@ def post_all():
 
 @posts_blueprint.route('/posts/<int:post_pk>/')
 def post_one(post_pk):
+
+    try:
+        post = posts_dao.get_by_pk(post_pk)
+        return render_template('post.html', post=post)
+    except:
+        return "Произошло ошибка при получении поста"
+
     return "Страничка одного поста"
 
 

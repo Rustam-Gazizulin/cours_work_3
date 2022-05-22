@@ -5,6 +5,7 @@ from app.api.views import api_blueprint
 from app import logger
 
 app = Flask(__name__)
+app.config['JSON_AS_ASCII'] = False
 
 logger.create_logger()
 

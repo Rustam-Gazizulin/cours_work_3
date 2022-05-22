@@ -20,9 +20,11 @@ def post_all():
     return jsonify(posts)
 
 
-@api_blueprint.route('/api/posts/<int:post_id>/')
-def post_one(post_id):
-    return jsonify({'content': 'Страничка одного поста'})
+@api_blueprint.route('/api/posts/<int:post_pk>/')
+def post_one(post_pk):
+    logger.debug(f'Запрошен 1 пост pk {post_pk} через API')
+    post = posts_dao.get_by_pk(post_pk)
+    return jsonify(post)
 
 
 

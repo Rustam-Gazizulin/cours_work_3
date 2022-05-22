@@ -1,3 +1,5 @@
+from json import JSONDecodeError
+
 from flask import Blueprint, render_template, request, abort
 from app.posts.dao.posts_dao import PostsDAO
 from app.posts.dao.comments_dao import CommentsDAO
@@ -21,8 +23,10 @@ def post_one(post_pk):
     try:
         post = posts_dao.get_by_pk(post_pk)
         comments = comments_dao.get_by_post_pk(post_pk)
-    except:
-        return "Произошла ошибка при получении данных поста"
+    except (JSONDecodeError, FileNotFoundError) as error:
+        return render_template('error.html', error=error)
+    except BaseException as e:
+        return render_template('error.html', error='Неизвестная ошибка')
     else:
         if post is None:
             abort(404)

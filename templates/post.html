@@ -48,22 +48,20 @@
         </div>
         <div class="item__bottom">
           <div class="item__post-info">
-            <p class="item__comments-counter">3 комментария</p>
+            <p class="item__comments-counter">{{ number_of_comments }} комментария</p>
             <div class="item__counter">
               <img src="../static/img/eye.png" alt="" class="item__counter-icon" width="26">
               <span class="item__counter-text">1023</span>
             </div>
           </div>
           <div class="item__comments">
+
+            {% for comment in comments %}
             <p class="item__comment">
-              <b>user 1:</b> комментарий пользователя который его оставил
+              <b>{{ comment.commenter_name }}</b> {{ comment.comment }}
             </p>
-            <p class="item__comment">
-              <b>user 2:</b> еще один комментарий
-            </p>
-            <p class="item__comment">
-              <b>user 3:</b> и&nbsp;какой-то коммент еще
-            </p>
+            {% endfor %}
+
           </div>
         </div>
       </div>

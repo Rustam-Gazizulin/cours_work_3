@@ -33,7 +33,7 @@ class PostsDAO:
                 posts_by_user.append(post)
         return posts_by_user
 
-    def seaarch(self, query):
+    def search(self, query):
         """Возвращает список постов по ключевому слову"""
         posts = self.get_all()
         matching_posts = []

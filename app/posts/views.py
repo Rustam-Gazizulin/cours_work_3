@@ -1,3 +1,4 @@
+import logging
 from json import JSONDecodeError
 
 from flask import Blueprint, render_template, request, abort
@@ -8,9 +9,13 @@ posts_blueprint = Blueprint('posts_blueprint', __name__, template_folder='templa
 posts_dao = PostsDAO('data/posts.json')
 comments_dao = CommentsDAO('data/comments.json')
 
+logger = logging.getLogger('basic')
+
 
 @posts_blueprint.route('/')
 def post_all():
+
+    logger.debug('Запрошены все посты')
     try:
         posts = posts_dao.get_all()
         return render_template('index.html', posts=posts)
@@ -20,6 +25,8 @@ def post_all():
 
 @posts_blueprint.route('/posts/<int:post_pk>/')
 def post_one(post_pk):
+
+    logger.debug(f'Запрошен пост {post_pk}')
     try:
         post = posts_dao.get_by_pk(post_pk)
         comments = comments_dao.get_by_post_pk(post_pk)

@@ -14,7 +14,6 @@ logger = logging.getLogger('basic')
 
 @posts_blueprint.route('/')
 def post_all():
-
     logger.debug('Запрошены все посты')
     try:
         posts = posts_dao.get_all()
@@ -25,7 +24,6 @@ def post_all():
 
 @posts_blueprint.route('/posts/<int:post_pk>/')
 def post_one(post_pk):
-
     logger.debug(f'Запрошен пост {post_pk}')
     try:
         post = posts_dao.get_by_pk(post_pk)
@@ -48,9 +46,20 @@ def post_error(e):
 
 @posts_blueprint.route('/search/')
 def posts_search():
-    return "Поиск по постам"
+    query = request.args.get('s', "")
+    if query != "":
+        posts = posts_dao.search(query)
+        count_posts = len(posts)
+    else:
+        posts = []
+        count_posts = 0
+    return render_template('search.html', query=query, posts=posts, count_posts=count_posts)
 
 
 @posts_blueprint.route('/users/<username>/')
 def posts_by_user(username):
-    return f"Поиск по имени пользователя {username}"
+    posts = posts_dao.get_by_user(username)
+    count_posts = len(posts)
+
+    return render_template('user-feed.html', posts=posts, count_posts=count_posts)
+

@@ -23,12 +23,19 @@
     </div>
   </header>
   <main class="container">
+
+     <div class="search">
+      <form action="/search" class="search__form">
+        <input name="s" type="search" class="search__input">
+      </form>
+     </div>
+
     <section class="items">
 
     {% for post in posts %}
       <div class="items__item item">
         <div class="item__top">
-          <a href="/users/{{ post.poster_name }}/" class="item__head">
+          <a href="/users/{{ post.poster_name }}" class="item__head">
             <div class="item__ava-wrap">
               <img src="{{ post.poster_avatar }}" alt="" class="item__ava" width="47">
             </div>

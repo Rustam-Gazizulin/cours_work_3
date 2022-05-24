@@ -42,3 +42,5 @@ class PostsDAO:
             if query_lower in post['content'].lower():
                 matching_posts.append(post)
         return matching_posts
+
+    #def posts_by_bookmarks(self):

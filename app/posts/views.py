@@ -63,3 +63,11 @@ def posts_by_user(username):
 
     return render_template('user-feed.html', posts=posts, count_posts=count_posts)
 
+@posts_blueprint.route('/bookmarks/')
+def posts_by_bookmarks():
+    return render_template('bookmarks.html')
+
+@posts_blueprint.route('/tag/')
+def posts_by_tag():
+    return render_template('tag.html')
+

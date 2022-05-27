@@ -39,7 +39,7 @@
             <div class="item__ava-wrap">
               <img src="{{ post.poster_avatar }}" alt="" class="item__ava" width="47">
             </div>
-            <span class="item__username">"{{ post.poster_name }}"</span>
+            <span class="item__username">{{ post.poster_name }}</span>
           </a>
         </div>
         <a href="/posts/{{ post.pk }}" class="item__post-link">
@@ -54,9 +54,9 @@
         </div>
         <div class="item__post-bottom">
           <a href="/posts/{{ post.pk }}" class="item__btn-more">Подробнее</a>
-          <button type="button" class="item__bookmark-btn">
+          <a href = '/' type="button" class="item__bookmark-btn active">
             <img src="../static/img/bookmark.png" alt="" class="item__bookmark-icon" width="24">
-          </button>
+          </a>
         </div>
       </div>
     {% endfor %}
